@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用pointer-events控制鼠标事件</title>
+  <style>
+    a {
+      color: red;
+    }
+    .disable {
+      pointer-events: none;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <a href="javascript:;" id="btn">发送验证码</a>
+  <script>
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = function() {
+      oBtn.classList.add('disable');
+      setTimeout(function() {
+        oBtn.classList.remove('disable');
+      }, 3000)
+    }
+  </script>
+</body>
+</html>

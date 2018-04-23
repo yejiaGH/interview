@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>错误监控</title>
+    <script type="text/javascript">
+      window.addEventListener('error', function (e) {
+          console.log('捕获', e);
+      }, true); // true捕获，false冒泡
+    </script>
+  </head>
+  <body>
+    <script src="//badu.com/test.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      (new Image()).src = 'http://baidu.com/tesjk?r=tksjk'; // 上报
+    </script>
+  </body>
+</html>
+<!-- 
+  如何监测JS错误？如何保证产品质量？
+  
+  前端错误的分类
+    即时运行错误：代码错误
+    资源加载错误
+
+  错误的捕获方式
+    即时运行错误的捕获方式
+    1）try ... catch   2) window.onerror
+
+    资源加载错误
+    1）object.onerror  2）performance.getEntries()  3）Error事件捕获
+
+    延伸：跨域的js运行错误可以捕获吗，错误提示什么，应该怎么处理？
+      错误信息：Script error.
+      出错行号：0
+      出错列好：0
+      错误详情：null
+
+    1. 在script标签增加crossorigin属性
+    2. 设置js资源响应头Access-Control-Allow-Origin: *
+
+  上报错误的基本原理
+
+ -->

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>溢出、overflow、BFC</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+    div p {
+      width: 100px;
+      height: 100px;
+      margin-left: 100px;
+      background-color: pink;
+    }
+    div.hidden {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div><p></p></div>
+  <div class="hidden"><p></p></div>
+</body>
+</html>

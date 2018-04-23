@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object.defineProperty</title>    
+  </head>
+  <body>
+    <script type="text/javascript">
+      var obj1 = {};
+      var descriptor = Object.create(null); // 没有继承的属性
+      // 默认没有enumerable，没有configurable，没有writable
+      descriptor.value = 'static';
+      Object.defineProperty(obj1, 'key', descriptor);
+      console.log(obj1);
+
+      // 显示
+      var obj2 = {};
+      Object.defineProperty(obj2, 'key', {
+        enumerable: true,
+        configurable: false,
+        writable: false,
+        value: 'static',
+      });
+      console.log(obj2);
+    </script>
+  </body>
+</html>

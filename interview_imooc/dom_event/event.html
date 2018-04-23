@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Event</title>
+  </head>
+  <body>
+    <div id="ev">
+      <style>
+        #ev {
+          width: 300px;
+          height: 100px;
+          background: red;
+          color: #fff;
+          text-align: center;
+          line-height: 100px;
+        }
+      </style>
+      目标元素
+    </div>
+    <script type="text/javascript">
+      // 观察事件捕获的顺序 
+      var ev = document.getElementById('ev');
+      
+      ev.addEventListener('click', function (e) {
+          console.log('ev captrue');
+      }, true);
+
+      window.addEventListener('click', function (e) {
+          console.log('window captrue');
+      }, true);
+
+      document.addEventListener('click', function (e) {
+          console.log('document captrue');
+      }, true);
+
+      document.documentElement.addEventListener('click', function (e) {
+          console.log('html captrue');
+      }, true);
+
+      document.body.addEventListener('click', function (e) {
+          console.log('body captrue');
+      }, true);
+
+      // 自定义事件
+      var eve = new Event('test');
+      ev.addEventListener('test', function(){
+        console.log('test dispatch');
+      }); 
+      setTimeout(function() {
+        ev.dispatchEvent(eve);
+      }, 1000);
+    </script>
+  </body>
+</html>
+<!-- DOM事件类
+  基本概念：DOM事件的级别（二级事件哪些）
+    DOM0  element.onclick=function(){}
+    DOM2  element.addEventListener('click', function(){},false)
+    DOM3  element.addEventListener('keyup', function(){},false)
+  DOM事件模型（捕获、冒泡）
+  DOM事件流
+    第一阶段：捕货
+    第二阶段：目标阶段（按钮）
+    第三阶段：冒泡
+  描述DOM事件捕获对具体流程
+    window
+      document
+        html
+          body 
+            ...
+              目标元素
+  Event对象的常见应用
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
+    event.currentTarget (在父级元素上绑定事件的优化，当前绑定事件的对象)
+    event.target （当前点击的对象）
+  自定义事件（重要知识点）
+    var eve = new Event('custome');
+    ev是DOM元素
+    ev.addEventListener('custome', function(){
+      console.log('custome');
+    });
+    ev.dispatchEvent(eve);
+
+    new CustomeEvent('custome', {key:value, ...}); // 查一下CustomEvent的具体用法，如何传递数据的
+-->

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>原型链</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      // 第一种方式：字面量
+      var o1 = {name: 'o1'};
+      var o2 = new Object({name: 'o2'});
+      // 第二种方式：构造函数
+      var M = function (name) { this.name = name; };
+      var o3 = new M('o3');
+      // 第三种方式：Object.create
+      var p = {name: 'p'};
+      var o4 = Object.create(p);
+
+      M.prototype.say = function () {
+          console.log('say hi');
+      };
+      var o5 = new M('o5'); 
+
+
+      var new2 = function (func) {
+        var o = Object.create(func.prototype);
+        var k = func.call(o);
+        if (typeof k === 'object') {
+            return k;
+        } else {
+            return o;
+        }
+      };
+      
+      var o6 = new2(M);
+      console.log(o6 instanceof M);
+      console.log(o6 instanceof Object);
+      console.log(o6.__proto__.constructor === M);
+
+    </script>
+  </body>
+</html>
+<!-- 
+  原型链类
+    1）创建对象有几种方法
+    2）原型、构造函数、实例、原型链
+
+      构造函数都有prototype属性，prototype -> 原型对象，原型对象有constructor构造器 -> 默认就是声明的构造函数
+      M.prototype.constructor === M (结果：true)
+      实例的__proto__属性，指向了构造函数的原型对象
+      o3.__proto__ === M.prototype (结果：true)
+      
+      原型链：实例的__proto__往上找到构造它的原型对象，最顶端是Object.prototype
+      o3.__proto__.__proto__ === Object.prototype (结果：true)
+      o4.__proto__ === p (结果：true)
+
+      M.__proto__ === Function.prototype (结果：true)
+
+      改变构造函数的实例的__proto__对象，也就改变了实例的上一级的原型对象
+
+    3）instanceof的原理
+
+      只要在一条原型链上的instanceof 就为true, o3 instanceof Object(结果：true)
+      M.prototype.__proto__ === Object.prototype
+
+      o3.__proto__.constructor === M (结果：true)
+      o3.__proto__.constructor === Object (结果：false)
+      用constructor来判断必用instanceof更严谨
+
+    4) new运算符
+
+      假设foo是构造函数，模拟new运算符步骤如下
+      Step 1：一个新对象被创建。它继承自foo.prototype
+      Step 2：构造函数foo被执行。执行的时候，相应的传参会被传入，同时上下文(this)会被指定为这个新实例。new foo等同于new foo(), 只能用在不传递任何参数的情况
+      Step 3：如果构造函数返回了一个“对象”，那么这个对象会取代整个new出来的结果。如果构造函数没有返回对象，那么new出来的结果为步骤1创建的对象
+
+      Object.create方法创建的对象是用__proto__连接的
+ -->

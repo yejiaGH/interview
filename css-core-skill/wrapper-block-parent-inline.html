@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>祖先行内元素，包含块取决于父元素或祖先元素的direction属性</title>
+  <style>
+    /* 当祖先是行内元素时，若direction值为ltr则右边补空白，若direction值为rtl则左边补空白 */
+    .box {
+      display: inline;
+      direction: ltr;
+      width: 100px;
+      height: 100px;
+      /* border: 1px solid red; */ /* 加上这行会发生什么？ */
+    }
+    .box2 {
+      display: inline;
+      direction: rtl;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="item">direction:ltr</div>
+  </div>
+  <div class="box2">
+      <div class="item">direction:rtl</div>
+    </div>
+</body>
+</html>

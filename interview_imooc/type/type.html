@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>类型转换</title>
+  </head>
+  <body>
+    <!-- https://wohugb.gitbooks.io/javascript/grammar/conversion.html -->
+    <script type="text/javascript">
+      // Number函数：转换成数值
+      // 转换后还是原来的值
+      console.log(Number(324)); // 324
+      // 如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0
+      console.log(Number('324')); // 324
+      console.log(Number('324abc')); // NaN
+
+      console.log(Number('')); // 0
+      // true转成1，false转成0
+      console.log(Number(false)); // 0
+      console.log(Number(true)); // 1
+      // 转成NaN
+      console.log(Number(undefined)); // NaN
+      // 转成0
+      console.log(Number(null)); // 0   
+
+      var a = {a:1};
+      console.log('valueOf: ', a.valueOf());
+      console.log('toString: ', a.toString());
+      console.log('Number: ', Number(a));
+    </script>
+    <script type="text/javascript">
+      // String函数：转为相应的字符串
+      console.log(String(123)); // "123"
+      // 字符串：转换后还是原来的值
+      console.log(String('abc')); // "abc"
+      // 布尔值：true转换为"true"，false转为"false"
+      console.log(String(true)); // "true"
+      // undefined：转为“undefined”
+      console.log(String(undefined)); // "undefined"
+      // null：转为“null”
+      console.log(String(null)); // "null"
+      // 先调用toString方法，如果toString方法返回的是原始类型的值，则对该值使用String方法；
+      // 如果toString方法返回的是复合类型的值，再调用valueOf方法，如果valueOf方法返回的是原始类型的值，则对该值使用String方法
+      var b = {
+        b: 1,
+        toString: function() {
+          return {
+            b: 2,
+          };
+        },
+        valueOf: function() {
+          return 'b';
+        }
+      };
+      console.log('b: ', String(b));
+      console.log(String({
+        a: 1,
+      })); 
+    </script>
+    <script type="text/javascript">
+      console.log('undefined: ', Boolean(undefined)); 
+      console.log('null: ', Boolean(null));
+      console.log('0', Boolean(0));
+      console.log('NaN', Boolean(NaN));
+      console.log('空字符串', Boolean(''));
+    </script>
+  </body>
+</html>
+<!-- 类型转换 数据类型
+  最新的ECMAScript标准定义了7种数据类型
+  原始类型
+    Boolean    Null    Undefined    Number    String    Symbol
+  对象
+    Object
+
+  类型转换
+    显示类型转换(直接调用这些函数)    
+      Number函数
+        原始类型转换
+          数值：转换后还是原来的值。
+          字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0。
+          布尔值：true转成1，false转成0。
+          undefined：转成NaN。
+          null：转成0。
+        
+        对象类型转换
+          先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行后续步骤。
+          如果valueOf方法返回复合类型的值，再调用对象自身的toString方法，如果toString方法返回原始类型的值，则对该值使用Number方法，不再进行后续步骤。
+          如果toString方法返回的是复合类型的值，则报错。
+
+      String函数
+        原始类型转换
+          数值：转为相应的字符串。
+          字符串：转换后还是原来的值。
+          布尔值：true转为“true”，false转为“false”。
+          undefined：转为“undefined”。
+          null：转为“null”。
+        
+        对象类型转换
+          先调用toString方法，如果toString方法返回的是原始类型的值，则对该值使用String方法；
+          如果toString方法返回的是复合类型的值，再调用valueOf方法，如果valueOf方法返回的是原始类型的值，则对该值使用String方法，不再进行以下步骤。
+          如果valueOf方法返回的是复合类型的值，则报错。
+
+      Boolean函数
+        显示类型转换 Boolean函数
+        原始类型转换
+          undefined     -> false
+          null          -> false
+          -0            -> false
+          +0            -> false
+          NaN           -> false
+          ''(空字符串)   -> false
+    
+    隐式类型转换
+      四则运算
+      判断语句
+      Native调用
+
+      常见题目
+        [] + []
+        [] + {}
+        {} + []
+        {} + {} // Chrome与Firefox结果不同, http://2ality.com/2012/01/object-plus-object.html
+        true + true
+        1 + {a:1}
+
+    类型转换typeof
+      Type                                                      Reuslt
+      Undefined                                                 "undefined"
+      Null                                                      "object"
+      Boolean                                                   "boolean"
+      Number                                                    "number"
+      String                                                    "string"
+      Symbol(new in ECMAScript 2015)                            "symbol"
+      Host object(provided by the JS environment)               Implementation-dependent
+      Function object(implements[[Call]] in ECMA-262 terms)     "function"
+      Any other object                                          "object"
+--> 

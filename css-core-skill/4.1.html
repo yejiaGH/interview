@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4.1 被重叠</title>
+  <style>
+    body, div {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      /*width: 200px;
+      height: 200px;*/
+      border: 1px solid #dedede;
+    }
+    .parent {
+      border: 1px solid red;
+    }
+    .item1 {
+      width: 100px;
+      background: #ddd;
+      margin-left: auto;
+      /* display: inline-block; */
+    }
+    .item2 {
+      position: absolute;
+      left: 50px;
+      top: 25px;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      
+    }
+    .item3 {
+      width: 300px;
+      height: 300px;
+      background-color: green;
+    }
+    .item4 {
+      /* position: absolute; */
+      left: 0;
+      right: 0;
+      width: auto;
+      height: 100px;
+      background-color: red;
+      text-align: center;
+    }
+    .size40 {
+      font-size: 40px;
+      color: #fff;
+      background-color: forestgreen;
+    }
+    .size20 {
+      font-size: 20px;
+      color: #fff;
+      background-color: dodgerblue;
+    }
+    .item5 {
+      font-size: 0px;
+      background: #ddd;
+      border: 1px solid red;
+    }
+    .span5 {
+      display: inline-block;
+      font-size: 20px;
+      background: pink;
+      vertical-align: middle;
+    }
+    .img-middle {
+      background: #fff;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+    .container {
+      border: 1px solid blue;
+      position: relative;
+      padding-right: 50px;
+    }
+    .content {
+      /* height: 100px; */
+      background: #ccc;
+      font-size: 0;
+      text-align: center;
+      margin-right: 10px;
+    }
+    .cell {
+      display: inline-block;
+      font-size: 0;
+      /* vertical-align: middle; */
+      /* height: 40px; */
+    }
+    .table-cell {
+      display: table-cell;
+      vertical-align: middle;
+      height: 40px;
+      font-size: 16px;
+    }
+    .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;      
+      
+      font-size: 0;
+      
+      margin-left: 10px;
+      background: pink;
+    }
+    .right .img-middle {
+      margin-top: -15px;
+      position: relative;      
+      top: 50%;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="item1">item1</div>
+  <div class="parent">
+    <span class="item2">item2</span>
+  </div>
+  <!-- <div class="item2">item2 div</div> -->
+  <div class="item3">item3</div>
+  <div class="item4">float<span class="size40">span40 text</span><span class="size20">span20 text</span></div>
+  <div class="item5"><span class="span5">text span<br/>text span2</span><img class="img-middle" /></div>
+  <div class="container">
+      
+    <div class="content">
+      <div class="cell">
+        <div class="table-cell">content
+          <br/>content<br/>content<br/>
+        </div>
+      </div>
+      
+      <!-- 1content content content content content content content
+      <br/>
+      2content content content content content content content -->
+      <!--<span class="span5">text span<br/>text span2</span>-->
+    </div>
+    <div class="right"><img class="img-middle" /></div>
+  </div>
+</body>
+</html>

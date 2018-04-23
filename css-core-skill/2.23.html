@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>float + BFC 左右布局</title>
+  <style>
+    .item1 {
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 12px;
+      background-color: pink; 
+    }
+    .item2 {
+      overflow: hidden;
+      width: 200px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="item1">
+      img
+    </div>
+    <div class="item2">
+      <h2>亲，这是新鲜水果</h2>
+      <p>
+        看好了就买吧看好了就买吧看好了就买吧看好了就买吧看好了就买吧看好了就买吧看好了就买吧
+      </p>
+    </div>
+  </div>
+</body>
+</html>

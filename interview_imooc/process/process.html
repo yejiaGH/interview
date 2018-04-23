@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>js运行机制</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // console.log(1);
+      // setTimeout(function () {
+      //     console.log(2);
+      // }, 0);
+      // console.log(3);
+      // console.log(4);
+      //
+      // console.log('A'); 
+      // setTimeout(function () {
+      //     console.log('B');
+      // }, 0);
+      // while (1) {
+      //
+      // }
+      //
+      for (var i = 0; i < 4; i++) {
+          setTimeout(function () {
+              console.log(i);
+          }, 1000);
+          //  Timer识别到异步任务，把它从运行栈中拿走。然后到1秒的时候，才把function放到异步  队列
+      }
+
+    </script>
+  </body>
+</html>
+<!-- 
+  JS是单线程的任务队列，有同步任务、异步任务(setTimeout等)。异步队列在同步队列之后，同步队列执行完之前，任何异步堵截不会被执行。
+  异步任务有：
+    setTimeout、setInterval
+    DOM事件
+    ES6中的Promise
+
+  理解哪些语句会放入异步任务队列
+  理解语句放入异步任务队列的时机
+-->

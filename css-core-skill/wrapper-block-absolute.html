@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定位为absolute,包含块由最近的定位值relative、absolute、fixed创建</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+    }
+    .box1 {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .box2 {
+      position: relative;
+      left: 100px;
+    }
+    .box2 .item, .box3, .box3 .item, .box4 .item {
+      position: absolute;
+    }
+    .box4 {
+      position: fixed;
+      left: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box box1">父元素或祖先元素没有定位</div>
+  <div class="box box2">
+    <div class="item">父元素或祖先元素定位值为relative</div>
+  </div>
+  <div class="box box3">
+    <div class="item">父元素或祖先元素定位值为absolute</div>
+  </div>
+  <div class="box box4">
+      <div class="item">父元素或祖先元素定位值为fixed</div>
+    </div>
+</body>
+</html>

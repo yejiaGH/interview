@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定位为relative或static或没有设置定位属性，包含块由最近的父元素或祖先元素创建</title>
+</head>
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    margin: 100px;
+    background-color: pink;
+  }
+  .box2 {
+    position: relative;
+    /* position: static; */ /* static 会使left, top失效 */
+    left: 0;
+    top: -100px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+  .box2 .item {
+    width: 50px;
+    height: 50px;
+    background-color: orange;
+  }
+</style>
+<body>
+  <!-- fixed -->
+  <div class="box">
+    <div class="item">正常元素</div>
+  </div>
+  <div class="box2">
+    <div class="item">relative</div>
+  </div>
+</body>
+</html>
